@@ -7,7 +7,10 @@ fn main() {
         .insert_resource(Msaa::Sample4)
         .add_plugins(DefaultPlugins)
         .add_plugin(StlPlugin)
-        .insert_resource(SpinTimer(Timer::from_seconds(1.0 / 60.0, TimerMode::Repeating)))
+        .insert_resource(SpinTimer(Timer::from_seconds(
+            1.0 / 60.0,
+            TimerMode::Repeating,
+        )))
         .add_startup_system(setup)
         .add_system(spin_disc)
         .run();
@@ -33,7 +36,7 @@ fn setup(
             transform: Transform::from_rotation(Quat::from_rotation_z(0.0)),
             ..Default::default()
         },
-        Disc { angle: 0.0 }
+        Disc { angle: 0.0 },
     ));
     commands.spawn(PointLightBundle {
         transform: Transform::from_xyz(30.0, 0.0, 20.0),
